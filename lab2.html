@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="lab2-styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Đăng Nhập</h1>
+        <form id="loginForm" onsubmit="event.preventDefault(); login();">
+            <div class="input-group">
+                <label for="username">Tên người dùng/Email:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Đăng Nhập</button>
+            <div class="forgot-password">
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function login() {
+            // Chuyển hướng đến trang dashboard mà không kiểm tra tên người dùng hoặc mật khẩu
+            window.location.href = "lab2-Dashboard.html"; // Chuyển hướng đến dashboard
+        }
+    </script>
+</body>
+</html>

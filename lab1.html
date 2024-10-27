@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Khóa Học</title>
+    <link rel="stylesheet" href="lab1-styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý Khóa Học</h1>
+
+        <!-- Form Tạo/Chỉnh Sửa Khóa Học -->
+        <form id="courseForm">
+            <!-- Mã Khóa Học (chỉ hiển thị khi chỉnh sửa) -->
+            <div class="form-group" id="courseIdGroup">
+                <label for="courseId">Mã Khóa Học:</label>
+                <input type="text" id="courseId" name="courseId" readonly>
+            </div>
+
+            <!-- Tên Khóa Học -->
+            <div class="form-group">
+                <label for="courseName">Tên Khóa Học <span class="required">*</span>:</label>
+                <input type="text" id="courseName" name="courseName" maxlength="255" placeholder="Nhập tên khóa học..." required>
+            </div>
+
+            <!-- Mô Tả Khóa Học -->
+            <div class="form-group">
+                <label for="courseDescription">Mô Tả Khóa Học:</label>
+                <textarea id="courseDescription" name="courseDescription" placeholder="Nhập mô tả khóa học (tùy chọn)..."></textarea>
+            </div>
+
+            <!-- Người Hướng Dẫn -->
+            <div class="form-group">
+                <label for="instructor">Người Hướng Dẫn <span class="required">*</span>:</label>
+                <select id="instructor" name="instructor" required>
+                    <option value="">Chọn người hướng dẫn...</option>
+                    <option value="1">Nguyễn Văn A</option>
+                    <option value="2">Trần Thị B</option>
+                    <option value="3">Lê Văn C</option>
+                </select>
+            </div>
+
+            <!-- Thời Gian Tạo -->
+            <div class="form-group" id="createAtGroup">
+                <label for="createAt">Thời Gian Tạo:</label>
+                <input type="text" id="createAt" name="createAt" readonly>
+            </div>
+
+            <!-- Thời Gian Cập Nhật -->
+            <div class="form-group" id="updateAtGroup">
+                <label for="updateAt">Thời Gian Cập Nhật:</label>
+                <input type="text" id="updateAt" name="updateAt" readonly>
+            </div>
+
+            <!-- Nút Hành Động -->
+            <div class="form-actions">
+                <button type="submit" id="submitBtn">Tạo Khóa Học</button>
+                <button type="button" id="deleteBtn" class="danger" onclick="confirmDelete()">Xóa Khóa Học</button>
+            </div>
+        </form>
+
+        <!-- Thông Báo Thành Công/Thất Bại -->
+        <div id="notification" class="hidden"></div>
+    </div>
+
+    <script src="lab1-script.js"></script>
+</body>
+</html>

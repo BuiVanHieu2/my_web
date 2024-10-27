@@ -1,0 +1,109 @@
+body {
+    font-family: 'Helvetica', Arial, sans-serif;
+    background-color: #f0f4f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-top: 5px solid #28a745; /* Màu xanh lá cây */
+}
+
+h1 {
+    text-align: center;
+    color: #28a745; /* Màu xanh lá cây */
+    margin-bottom: 20px;
+    font-size: 26px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: #28a745; /* Màu xanh lá cây khi focus */
+    outline: none;
+}
+
+textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.required {
+    color: red;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    background-color: #28a745; /* Màu xanh lá cây */
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #218838; /* Màu xanh lá cây đậm hơn khi hover */
+}
+
+button.danger {
+    background-color: #dc3545; /* Màu đỏ cho nút xóa */
+}
+
+button.danger:hover {
+    background-color: #c82333;
+}
+
+#notification {
+    margin-top: 20px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+#notification.success {
+    background-color: #28a745; /* Màu xanh lá cây cho thông báo thành công */
+    color: white;
+}
+
+#notification.error {
+    background-color: #dc3545;
+    color: white;
+}
