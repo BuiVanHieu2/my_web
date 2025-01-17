@@ -4,33 +4,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lý Khóa Học</title>
-    <link rel="stylesheet" href="lab1-styles.css">
+    <style>
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border-top: 5px solid #28a745;
+        }
+
+        h1 {
+            text-align: center;
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            border-color: #28a745;
+            outline: none;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .required {
+            color: red;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        button.danger {
+            background-color: #dc3545;
+        }
+
+        button.danger:hover {
+            background-color: #c82333;
+        }
+
+        #notification {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #notification.success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        #notification.error {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Quản Lý Khóa Học</h1>
-
-        <!-- Form Tạo/Chỉnh Sửa Khóa Học -->
         <form id="courseForm">
-            <!-- Mã Khóa Học (chỉ hiển thị khi chỉnh sửa) -->
             <div class="form-group" id="courseIdGroup">
                 <label for="courseId">Mã Khóa Học:</label>
                 <input type="text" id="courseId" name="courseId" readonly>
             </div>
-
-            <!-- Tên Khóa Học -->
             <div class="form-group">
                 <label for="courseName">Tên Khóa Học <span class="required">*</span>:</label>
                 <input type="text" id="courseName" name="courseName" maxlength="255" placeholder="Nhập tên khóa học..." required>
             </div>
-
-            <!-- Mô Tả Khóa Học -->
             <div class="form-group">
                 <label for="courseDescription">Mô Tả Khóa Học:</label>
                 <textarea id="courseDescription" name="courseDescription" placeholder="Nhập mô tả khóa học (tùy chọn)..."></textarea>
             </div>
-
-            <!-- Người Hướng Dẫn -->
             <div class="form-group">
                 <label for="instructor">Người Hướng Dẫn <span class="required">*</span>:</label>
                 <select id="instructor" name="instructor" required>
@@ -40,30 +141,70 @@
                     <option value="3">Lê Văn C</option>
                 </select>
             </div>
-
-            <!-- Thời Gian Tạo -->
             <div class="form-group" id="createAtGroup">
                 <label for="createAt">Thời Gian Tạo:</label>
                 <input type="text" id="createAt" name="createAt" readonly>
             </div>
-
-            <!-- Thời Gian Cập Nhật -->
             <div class="form-group" id="updateAtGroup">
                 <label for="updateAt">Thời Gian Cập Nhật:</label>
                 <input type="text" id="updateAt" name="updateAt" readonly>
             </div>
-
-            <!-- Nút Hành Động -->
             <div class="form-actions">
                 <button type="submit" id="submitBtn">Tạo Khóa Học</button>
                 <button type="button" id="deleteBtn" class="danger" onclick="confirmDelete()">Xóa Khóa Học</button>
             </div>
         </form>
-
-        <!-- Thông Báo Thành Công/Thất Bại -->
         <div id="notification" class="hidden"></div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('courseForm');
+            const notification = document.getElementById('notification');
+            const courseIdInput = document.getElementById('courseId');
+            const createAtInput = document.getElementById('createAt');
+            const updateAtInput = document.getElementById('updateAt');
+            const deleteBtn = document.getElementById('deleteBtn');
+            const submitBtn = document.getElementById('submitBtn');
 
-    <script src="lab1-script.js"></script>
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                notification.className = 'success';
+                notification.innerText = 'Khóa học đã được tạo/cập nhật thành công!';
+                notification.classList.remove('hidden');
+                console.log('Course submitted');
+            });
+
+            window.confirmDelete = function () {
+                if (confirm('Bạn có chắc chắn muốn xóa khóa học này không?')) {
+                    notification.className = 'error';
+                    notification.innerText = 'Khóa học đã được xóa!';
+                    notification.classList.remove('hidden');
+                    console.log('Course deleted');
+                }
+            };
+
+            function loadCourseData() {
+                const isEditing = false;
+
+                if (isEditing) {
+                    courseIdInput.value = '123';
+                    document.getElementById('courseName').value = 'Khóa Học Mẫu';
+                    document.getElementById('courseDescription').value = 'Đây là mô tả cho khóa học mẫu.';
+                    document.getElementById('instructor').value = '1';
+                    createAtInput.value = '2024-09-28 10:00';
+                    updateAtInput.value = '2024-09-28 12:00';
+                    submitBtn.innerText = 'Cập Nhật Khóa Học';
+                    deleteBtn.style.display = 'inline-block';
+                } else {
+                    document.getElementById('courseIdGroup').style.display = 'none';
+                    document.getElementById('createAtGroup').style.display = 'none';
+                    document.getElementById('updateAtGroup').style.display = 'none';
+                    deleteBtn.style.display = 'none';
+                }
+            }
+
+            loadCourseData();
+        });
+    </script>
 </body>
 </html>
