@@ -3,13 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập</title>
-    <link rel="stylesheet" href="lab2-styles.css">
+    <title>Kết Hợp Dashboard và Đăng Nhập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Chiều cao của body bằng chiều cao viewport */
+            display: flex; /* Sử dụng Flexbox */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%; /* Đảm bảo container có chiều rộng tối đa */
+            text-align: center; /* Căn giữa nội dung bên trong */
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left; /* Căn trái nhãn và input */
+        }
+
+        label {
+            display: block; /* Đảm bảo nhãn chiếm một dòng */
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .dashboard-container {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .exercise-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .exercise-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .exercise-card h2 {
+            margin: 0 0 10px;
+            color: #007BFF;
+        }
+
+        .exercise-card button {
+            background-color: #28a745;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .exercise-card button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
+    <div id="loginSection" class="login-container">
         <h1>Đăng Nhập</h1>
-        <form id="loginForm" onsubmit="event.preventDefault(); login();">
+        <form id="loginForm" onsubmit="event.preventDefault(); showDashboard();">
             <div class="input-group">
                 <label for="username">Tên người dùng/Email:</label>
                 <input type="text" id="username" required>
@@ -25,10 +136,36 @@
         </form>
     </div>
 
+    <div id="dashboardSection" class="dashboard-container" style="display: none;">
+        <h1>BÀI TẬP</h1>
+        <div class="exercise-list">
+            <div class="exercise-card">
+                <h2>Bài tập 1</h2>
+                <p>Hãy đếm số lượng chữ số của số nguyên dương.</p>
+                <p>Mức độ khó: Dễ</p>
+                <p>Thời gian: 15 phút</p>
+                <button>Xem chi tiết</button>
+            </div>
+            <div class="exercise-card">
+                <h2>Bài tập 2</h2>
+                <p>Hãy viết hàm chuyển đổi hệ cơ số 10 sang cơ số 2 và ngược lại theo 2 cách sử dụng đệ quy và không sử dụng đệ quy.</p>
+                <p>Mức độ khó: Trung bình</p>
+                <p>Thời gian: 30 phút</p>
+                <button>Xem chi tiết</button>
+            </div>
+            <div class="exercise-card">
+                <h2>Bài tập 3</h2>
+                <p>Tính S(n) = sqrt(1 + sqrt(2 + sqrt (3 + ...sqrt (n-1 + sqrt (n))))).</p>
+                <p>Mức độ khó: 45</p>
+                <button>Xem chi tiết</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function login() {
-            // Chuyển hướng đến trang dashboard mà không kiểm tra tên người dùng hoặc mật khẩu
-            window.location.href = "lab2-Dashboard.html"; // Chuyển hướng đến dashboard
+        function showDashboard() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dashboardSection').style.display = 'block';
         }
     </script>
 </body>
