@@ -3,28 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bui Van Hieu</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>My Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #B9D3EE;
+        }
+        header {
+            background-color: #006d77;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #004b52;
+            position: relative;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffdd57;
+            border-bottom: 2px solid #ffdd57;
+        }
+        .lab-links {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+            background-color: #e0f7fa;
+        }
+        .lab-links a {
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #004b52;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .lab-links a:hover {
+            background-color: #ffdd57;
+            color: #004b52;
+        }
+        section {
+            display: none;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 900px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+        }
+        section.active {
+            display: block;
+        }
+        footer {
+            background-color: #004b52;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .home-content {
+            text-align: center;
+            margin: 2rem auto;
+            max-width: 700px;
+        }
+        .home-content h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+        .home-content p {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 1rem 0;
+        }
+        .home-content input[type="text"] {
+            padding: 0.5rem;
+            font-size: 1rem;
+            width: 70%;
+            margin-right: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .home-content button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            background-color: #006d77;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .home-content button:hover {
+            background-color: #004b52;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav > a');
+            const labLink = document.querySelector('a[href="#lab"]');
+            const labLinksContainer = document.querySelector('.lab-links');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const target = link.getAttribute('href').substring(1);
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        }
+                    });
+                    if (target === 'lab') {
+                        labLinksContainer.style.display = 'flex';
+                    } else {
+                        labLinksContainer.style.display = 'none';
+                    }
+                });
+            });
+
+            // Set initial active section
+            document.querySelector('#home').classList.add('active');
+        });
+    </script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="lab.html">Lab</a></li>
-            </ul>
-        </nav>
+        <img src="logo.png" alt="Logo" class="logo">
+        Bui Van Hieu
     </header>
-    <main>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#lab">Lab</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <div class="lab-links">
+        <a href="lab1.html">Lab 1</a>
+        <a href="lab2.html">Lab 2</a>
+        <a href="lab3.html">Lab 3</a>
+        <a href="lab4.html">Lab 4</a>
+        <a href="lab5.html">Lab 5</a>
+        <a href="lab6.html">Lab 6</a>
+    </div>
+
+    <section id="home">
+        <div class="home-content">
+            <h1>Wish you a happy day.</h1>  
+            <p>Welcome to my personal website. This site is a space where I share my work, projects, and a little bit about myself. Feel free to explore and connect!</p>
+            <p>If you have any questions or contributions about web content, please enter here!</p>
+            <input type="text" placeholder="Enter comments">
+            <button>Contact →</button>
+        </div>
+    </section>
+
+    <section id="lab">
+        <h2>Lab</h2>
+        <p>Select a lab from the options above to view details.</p>
+    </section>
+
+    <section id="about">
+        <h2>Name: Bui Van Hieu </h2>
+        <p><strong>Age:</strong> 19</p>
+        <p><strong>Major:</strong> Information Technology</p>
+        <p><strong>School:</strong> Ho Chi Minh City University of Agriculture and Forestry</p>
+        <p>I am studying Information Technology at Ho Chi Minh City University of Agriculture and Forestry. I am passionate about programming and software development. I hope to participate in many study and internship projects that will help me develop my problem-solving and teamwork skills.</p>
         
-        <section class="welcome-section">
-            <h1>Welcome to My Website!</h1>
-            <p>This is the homepage of my personal website. We hope you will give us your suggestions to improve the website!</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Hieu.</p>
-    </footer>
+        
+        
+        <h2>Skill:</h2>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Java</li>
+            <li>SQL</li>
+        </ul>
+    
+        <h2>Contact:</h2>
+        <p>Email: buivanhieu02102005@gmail.com</p>
+    </section>
+
+   
 </body>
 </html>
