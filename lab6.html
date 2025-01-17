@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Unit Test Custom Challenge</title>
+    <style>
+        /* Base styles */
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f7fa;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px 0;
+        }
+
+        /* Overlay styling for full-page cover */
+        .overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7); /* Darker overlay for better focus */
+          z-index: 10;
+        }
+
+        /* Title container */
+        .title-container {
+          text-align: center;
+          background-color: #ffffff;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 800px;
+          margin-bottom: 30px;
+        }
+
+        .title-container h1 {
+          font-size: 24px;
+          color: #1a73e8;
+          margin: 0;
+        }
+
+        /* Card container */
+        .card-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+          background-color: #ffffff;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 1200px;
+        }
+
+        /* Card styles */
+        .card {
+          background-color: #f1f3f4;
+          border-radius: 8px;
+          padding: 20px;
+          width: 250px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Icon styling */
+        .icon {
+          height: 50px;
+          width: 50px;
+          margin-bottom: 10px;
+          object-fit: contain;
+        }
+
+        /* Other card content */
+        h2 {
+          font-size: 18px;
+          margin: 10px 0;
+        }
+
+        .badge {
+          background-color: #555;
+          color: #fff;
+          padding: 2px 8px;
+          border-radius: 4px;
+          font-size: 12px;
+          margin-left: 5px;
+        }
+
+        p {
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 15px;
+        }
+
+        button {
+          background-color: #1a73e8;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 8px 16px;
+          cursor: pointer;
+          margin-right: 10px;
+          transition: background-color 0.3s ease;
+        }
+
+        button.guide {
+          background-color: #e0e0e0;
+          color: #333;
+        }
+
+        button:hover {
+          background-color: #155ab2;
+          opacity: 0.9;
+        }
+
+        /* Edit challenge modal styling */
+        #edit-challenge {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          flex-direction: column;
+          width: 90%;
+          max-width: 800px;
+          background-color: #ffffff;
+          padding: 20px;
+          border-radius: 16px; /* Rounded corners */
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Strong shadow for better focus */
+          z-index: 20;
+          opacity: 0;
+          animation: fadeIn 0.4s forwards; /* Smooth fade-in effect */
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+          to {
+              opacity: 1;
+          }
+        }
+
+        .edit-challenge h1 {
+          font-size: 26px;
+          color: #333;
+          margin-bottom: 20px;
+        }
+
+         .section label {
+          display: block;  
+          text-align: left;  
+          font-weight: bold; 
+          margin-bottom: 5px; 
+          margin-bottom: 0; 
+          color: #333; 
+        }
+        .section {
+          margin-top: 10px;
+          padding: 10px 0;
+          border-top: 1px solid #ddd;
+        }
+
+        .section select {
+          margin-left: -5px; 
+          padding: 5px;
+          border-radius: 4px;
+          border: 1px solid #ddd;
+        }
+
+        .editable-textarea {
+          width: 100%;
+          min-height: 60px; 
+          padding: 8px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          background-color: #fafafa;
+          margin-top: 10px;
+          overflow-y: auto;
+          font-size: 14px;
+        }
+
+        .toolbar {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+        }
+
+        .toolbar span {
+          font-weight: bold;
+          margin-right: 10px;
+        }
+
+        .toolbar-btn {
+          margin: 0 5px;
+          padding: 5px 10px;
+          font-weight: bold;
+          font-size: 18px; 
+          color: #333; 
+          border: none;
+          background-color: #f2f2f2;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .toolbar-btn:hover {
+          background-color: #ddd;
+          transform: scale(1.1); 
+        }
+
+        .starter-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #00bcd4; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.starter-btn:hover {
+    background-color: #0097a7; 
+}
+
+
+        .message-button {
+          background-color: #000;      
+          color: #fff;                 
+          font-size: 16px;            
+          padding: 10px 20px;          
+          border: none;               
+          border-radius: 5px;          
+          cursor: pointer;             
+          margin-top: 10px;            
+          text-align: center;
+        }
+
+        .message-button:hover {
+          background-color: #333;      
+        }
+
+        .test-cases {
+          margin-top: 20px;
+        }
+
+        .test-case-header {
+          display: flex;
+          justify-content: space-between;
+          font-weight: bold;
+          margin-top: 10px;
+        }
+
+        .test-case-types {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 5px;
+        }
+
+        .test-case-types select {
+          width: 48%;
+          padding: 5px;
+          border-radius: 4px;
+          border: 1px solid #ddd;
+        }
+
+        .test-case-grid {
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          gap: 10px;
+          margin-top: 10px;
+        }
+
+        .test-case-grid input[type="text"] {
+          width: 100%;
+          padding: 8px;
+          border-radius: 4px;
+          border: 1px solid #ddd;
+          font-size: 1em;
+        }
+
+        .arrow {
+          display: flex;
+          align-items: center;
+          font-size: 1.2em;
+          color: #666;
+        }
+
+        .info {
+          font-size: 0.9em;
+          color: #666;
+          cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container" id="challenge-selection">
+        <h1>New unit test custom challenge</h1>
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <img src="image/mocha.jpg" alt="JavaScript Icon" class="icon"> 
+            <h2>JavaScript <span class="badge">Mocha</span></h2>
+            <p>Use the Mocha testing framework and create unit tests to grade solutions.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+        <div class="card">
+            <img src="image/types.png" alt="TypeScript Icon" class="icon"> 
+            <h2>TypeScript <span class="badge">Mocha</span></h2>
+            <p>Use the Mocha testing framework and create unit tests to grade solutions.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+        <div class="card">
+            <img src="image/python.jpg" alt="Python Icon" class="icon"> 
+            <h2>Python <span class="badge">pytest</span></h2>
+            <p>pytest is the most popular and fully-featured Python testing framework.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+        <div class="card">
+            <img src="image/php.jpg" alt="PHP Icon" class="icon"> 
+            <h2>PHP <span class="badge">PHPUnit</span></h2>
+            <p>PHPUnit is a programmer-oriented testing framework for PHP.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+        <div class="card">
+            <img src="image/java.png" alt="Java Icon" class="icon"> 
+            <h2>Java <span class="badge">JUnit</span></h2>
+            <p>JUnit is a popular unit-testing framework in the Java ecosystem.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+        <div class="card">
+            <img src="image/kotlin.jpg" alt="Kotlin Icon" class="icon"> 
+            <h2>Kotlin <span class="badge">JUnit</span></h2>
+            <p>JUnit is a popular unit-testing framework in the Kotlin ecosystem.</p>
+            <button class="continue-btn" onclick="showEditChallenge()">Continue</button>
+            <button class="guide">Guide</button>
+        </div>
+    </div>
+
+    <!-- Lớp phủ và Phần chỉnh sửa thử thách -->
+    <div id="overlay" class="overlay" onclick="goBack()"></div>
+    <div class="title-container edit-challenge" id="edit-challenge">
+        <h1>Edit custom challenge</h1>
+        <div class="section">
+            <label for="difficulty"><strong>Difficulty:</strong></label>
+            <select id="difficulty">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+        </div>
+        <div class="section">
+            <label for="short-description"><strong>Short description:</strong></label>
+            <input type="text" id="short-description" value="This is a private challenge" style="width: 100%;">
+        </div>
+        <div class="section">
+            <label for="problem-statement"><strong>Problem Statement:</strong></label>
+            <div class="toolbar">
+                <span>Normal</span>
+                <button class="toolbar-btn" onclick="formatText('bold')">B</button>
+                <button class="toolbar-btn" onclick="formatText('italic')">I</button>
+                <button class="toolbar-btn" onclick="formatText('underline')">U</button>
+            </div>
+            <div contenteditable="true" id="problem-statement" class="editable-textarea"></div>
+        </div>
+
+        <button id="message1" onclick="toggleMessage()" class="message-button">
+            Click here to open the (Junit) and edit your code
+        </button>
+        
+        <button id="message2" class="message-button" style="display: none;">
+            Started code will automatically be generated for all 18 coding languages
+        </button>
+
+        <div class="section test-cases">
+            <label><strong>Required test cases</strong> <span class="info"><strong>ℹ</strong></span></label>
+            <div class="test-case-header">
+                <div>Input type</div>
+                <div>Output type</div>
+            </div>
+            <div class="test-case-types">
+                <select>
+                    <option>Integer</option>
+                    <option>String</option>
+                    <option>Array</option>
+                    <option>Boolean</option>
+                </select>
+                <select>
+                    <option>String</option>
+                    <option>Array</option>
+                    <option>Boolean</option>
+                    <option>Integer</option>
+                </select>
+            </div>
+            <div class="test-case-grid">
+                <input type="text" placeholder="Test case 1">
+                <div class="arrow">→</div>
+                <input type="text" placeholder="Expected output">
+            </div>
+        </div>
+        <button onclick="saveChallenge()" class="starter-btn">Save Challenge</button>
+
+    </div>
+
+    <script>
+        function showEditChallenge() {
+            document.getElementById("edit-challenge").style.display = "flex";
+            document.getElementById("overlay").style.display = "block";
+        }
+        function goBack() {
+            document.getElementById("edit-challenge").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+        function toggleMessage() {
+            const message1 = document.getElementById("message1");
+            const message2 = document.getElementById("message2");
+            message1.style.display = message1.style.display === "none" ? "block" : "none";
+            message2.style.display = message2.style.display === "none" ? "block" : "none";
+        }
+        function formatText(command) {
+            document.execCommand(command, false, null);
+        }
+        function saveChallenge() {
+            alert('Challenge saved!');
+        }
+    </script>
+</body>
+</html>
