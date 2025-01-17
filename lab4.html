@@ -1,10 +1,179 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training</title>
-    <link rel="stylesheet" href="lab4-style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000033;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .welcome-section {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            background-color: #FF00FF;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .welcome-text h1 {
+            margin: 0;
+        }
+
+        .weekly-streak {
+            display: flex;
+            justify-content: space-between;
+            align-items: left;
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .streak-info {
+            flex: 1;
+        }
+
+        .streak-stats {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .streak-icon {
+            font-size: 24px;
+            display: flex;
+            align-items: left;
+            gap: 5px;
+        }
+
+        .streak-icon .flame-icon {
+            font-size: 30px;
+        }
+
+        .activity-summary {
+            text-align: right;
+        }
+
+        .activity-summary a {
+            color: #6200ea;
+            text-decoration: none;
+        }
+
+        .learning-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .learning-tabs {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .learning-tabs a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #6200ea;
+            font-weight: bold;
+        }
+
+        .learning-tabs a.active {
+            border-bottom: 2px solid #6200ea;
+        }
+
+        .course-list {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            width: 30%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .course-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .course-info {
+            text-align: center;
+        }
+
+        .course-info h3 {
+            margin: 10px 0 5px;
+        }
+
+        .course-info p {
+            color: #555;
+        }
+
+        .course-info span {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -72,28 +241,24 @@
             
             <div class="course-list">
                 <div class="course-card">
-                   <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\affiliate.png" alt="Course thumbnail">>
+                    <img src="image/affiliate.png" alt="Course thumbnail">
                     <div class="course-info">
                         <h3>Affiliate</h3>
                         <p>Instructions for making an affiliate for beginners.</p>
-                        <span></span>
                     </div>
                 </div>
                 <div class="course-card">
-                   
-                     <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\creater.jpg">
+                    <img src="image/creater.jpg" alt="Course thumbnail">
                     <div class="course-info">
-                        <h3>Creater</h3>
+                        <h3>Creator</h3>
                         <p>Content creation training for beginners.</p>
-                        <span></span>
                     </div>
                 </div>
                 <div class="course-card">
-                   <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\bussiness.jpg">
+                    <img src="image/bussiness.jpg" alt="Course thumbnail">
                     <div class="course-info">
-                        <h3>Online business</h3>
+                        <h3>Online Business</h3>
                         <p>Online business courses from basic to advanced.</p>
-                        <span></span>
                     </div>
                 </div>
             </div>
@@ -101,45 +266,33 @@
 
         <section class="learning-section">
             <h2>Based on your certification interests, we recommend <h4><a href="#">Edit certification interests</a></h4></h2> 
-            
-            <div class="learning-tabs">
-                
-                
-            </div>
-            
             <div class="course-list">
-
                 <div class="course-card">
-                    <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\mai ro sop.jpg" alt="Course thumbnail">>
-                     <div class="course-info">
-                         <h3>Microsoft Certified: Azure Fundamentals</h3>
-                         <p>Being certified in Microsoft Azure Cloud Computing Services will give you a unique advantage.</p>
-                         <span></span>
-                     </div>
-                 </div>
+                    <img src="image/mai ro sop.jpg" alt="Course thumbnail">
+                    <div class="course-info">
+                        <h3>Microsoft Certified: Azure Fundamentals</h3>
+                        <p>Being certified in Microsoft Azure Cloud Computing Services will give you a unique advantage.</p>
+                    </div>
+                </div>
                 <div class="course-card">
-                   <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\gôn gồ.jpg" alt="Course thumbnail">>
+                    <img src="image/gôn gồ.jpg" alt="Course thumbnail">
                     <div class="course-info">
                         <h3>Google Certified Professional Cloud Architect (GCPCA)</h3>
                         <p>This certificate is a great choice for junior and senior cloud architects to introduce and expand their knowledge.</p>
-                        <span></span>
                     </div>
                 </div>
                 <div class="course-card">
-                   
-                     <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\xe ti phai.jpg">
+                    <img src="image/xe ti phai.jpg" alt="Course thumbnail">
                     <div class="course-info">
                         <h3>AWS Certified Solutions Architect-Associate</h3>
                         <p>The AWS Certified Solutions Architect-Associate certification validates your ability to design and deploy scalable systems on the AWS platform. This is a prerequisite for AWS certified professional architects.</p>
-                        <span></span>
                     </div>
                 </div>
                 <div class="course-card">
-                   <img src="c:\Users\Hieu\OneDrive\รูปภาพ\Saved Pictures\ai eo.jpg">
+                    <img src="image/ai eo.jpg" alt="Course thumbnail">
                     <div class="course-info">
-                        <h3>Ielts</h3>
-                        <p>Last but not least is the ietls certificate. By possessing this certificate, you will gain high scores in the eyes of employers.</p>
-                        <span></span>
+                        <h3>IELTS</h3>
+                        <p>Last but not least is the IELTS certificate. By possessing this certificate, you will gain high scores in the eyes of employers.</p>
                     </div>
                 </div>
             </div>
