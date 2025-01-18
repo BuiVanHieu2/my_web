@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Learning</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    header a {
+      color: #ff9800;
+      text-decoration: none;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      background-color: #444;
+      padding: 10px 0;
+    }
+
+    .navbar a {
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .sort-filter {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sort-filter label {
+      font-size: 0.9em;
+      color: #333;
+    }
+
+    .sort-filter select {
+      padding: 8px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .reset-button {
+      padding: 8px 15px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .reset-button:hover {
+      background-color: #555;
+    }
+
+    .courses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .course-card {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: calc(25% - 15px); 
+      box-sizing: border-box;
+    }
+
+    .course-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .course-card h3 {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .course-card p {
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    .course-card .rating {
+      font-size: 12px;
+      color: #ff9800;
+    }
+
+    .learning-path-card {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+
+    .learning-path-content {
+      flex-grow: 1;
+    }
+
+    .learning-path-content h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .progress-bar {
+      height: 4px;
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #673ab7;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>My learning</h1>
+  <p>1hr 30min watched <a href="#">View all activity</a></p>
+</header>
+
+<div class="navbar">
+  <a href="#" id="all-courses" class="tab-link active">All courses</a>
+  <a href="#" id="learning-paths" class="tab-link">Learning paths</a>
+  <a href="#" id="certifications" class="tab-link">Certifications</a>
+  <a href="#" id="archived" class="tab-link">Archived</a>
+  <a href="#" id="learning-tools" class="tab-link">Learning tools</a>
+</div>
+
+<div class="filters">
+  <div class="sort-filter">
+    <label for="sort">Sort by</label>
+    <select id="sort">
+      <option>Recently Accessed</option>
+      <option>Mulesoft</option>
+      <option>Information Security</option>
+      <option>Spring Boot</option>
+      <option>TOEIC</option>
+    </select>
+  </div>
+  <div class="sort-filter">
+    <label for="instructor">Instructor</label>
+    <select id="instructor">
+      <option>All Instructors</option>
+      <option>Nguyen Hung Cuong</option>
+      <option>Nguyen Quang Khai</option>
+      <option>Pham Thai Sang</option>
+      <option>Tran Ngoc Hoan</option>
+      <option>Tran Dinh Cuong</option>
+    </select>
+  </div>
+  <div class="sort-filter">
+    <label for="progress">Progress</label>
+    <select id="progress">
+      <option>All Progress</option>
+      <option>Spring Boot</option>
+      <option>IT Skills</option>
+      <option>Microsoft Azure</option>
+      <option>CompTIA</option>
+      <option>Cisco</option>
+      <option>Certifications</option>
+      <option>Certification</option>
+      <option>Certificate</option>
+      <option>IELTS</option>
+      <option>TOEIC</option>
+      <option>Mulesoft Training</option>
+      <option>All Progress</option>
+    </select>
+  </div>
+  <div class="sort-filter">
+    <label for="category">Filter by</label>
+    <select id="category">
+      <option>Categories</option>
+    </select>
+  </div>
+  <button class="reset-button">Reset</button>
+</div>
+
+<div class="courses">
+  <div class="course-card">
+    <img src="image/Stringboot.jpg" alt="Course Image">
+  
+    <h3>New Spring Boot Hibernate MicroServices and Cloud Certification Training batch.</h3>
+    <p> Content Development</p>
+    <p>100% complete</p>
+    <a href="https://www.youtube.com/watch?v=jnoHxZK7k3A&t=4s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+    <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+  </div>
+  <div class="course-card">
+    <img src="image/ifsecurity.jpg" alt="Course Image">
+    <h3>Information Security Management System (ISMS) Foundation course.</h3>
+    <p>FSOFT Content Development</p>
+    <p>20% complete</p>
+    <a href="https://www.youtube.com/watch?time_continue=1&v=d6ZKLEKd15U&embeds_referring_euri=https%3A%2F%2Fwww.google.com%2Fsearch%3Fsca_esv%3Dddfd98cd2ab249ea%26sxsrf%3DADLYWIJVSM-HOSePSm2o5DxY2xRcbIOw5A%3A1729908285491%26q%3Dinformation%2Bsecu&source_ve_path=Mjg2NjY" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p class="rating">⭐️</p>
+  </div>
+  <div class="course-card">
+    <img src="image/mut sot.jpg" alt="Course Image">
+    <h3>Mulesoft Training Online and Certification Course.</h3>
+    <p>Content Development.</p>
+    <p>100% complete</p>
+    <a href="    https://www.youtube.com/watch?v=MQ-F_875JVo" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+
+    <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+  </div>
+  <div class="course-card">
+    <img src="image/to ic.jpg" alt="Course Image">
+    <h3>TOEIC Course from EC.</h3>
+    <p>Content Development.</p> 
+    <a href="https://www.youtube.com/watch?v=Pp_k8gaHTSc&t=7s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+    <p>100% complete</p>
+    <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+  </div>
+  <div class="course-card">
+    <img src="image/ai.jpg" alt="Course Image">
+    <h3>IELTS 2024 Complete 11 Hour Course</h3>
+    <p>FSOFT Content Development</p>
+    <a href="https://www.youtube.com/watch?v=xGtKdsVxV8A" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>100% complete</p>
+   
+    <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+  </div>
+  <div class="course-card">
+    <img src="image/chat.jpg" alt="Course Image">
+    <h3>Professional Certificate Program in Generative AI and Machine Learning</h3>
+    <p></p>
+    <a href="https://www.youtube.com/watch?v=Pp_k8gaHTSc&t=7s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>40% complete</p>
+    <p class="rating">⭐️⭐️</p>
+  </div>
+
+
+  <div class="course-card">
+    <img src="image/cer.jpg" alt="Course Image">
+    <h3>Certification Java Course For Beginners</h3>
+    <p>Learn The Part Inc.</p>
+    <a href="https://www.youtube.com/watch?v=QrveTEKFnTU" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>70% complete</p>
+    <p class="rating">⭐️⭐️⭐️</p>
+    
+  </div>
+  <div class="course-card">
+    <img src="image/cre.png" alt="Course Image">
+    <h3>Using Certifications to Enhance Credibility and Stand Out in the Marketplace.</h3>
+    
+    <a href="https://www.youtube.com/watch?v=f9Zn9HMcSiw&t=4s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>70% complete</p>
+    <p class="rating">⭐️⭐️⭐️</p>
+    
+  </div><div class="course-card">
+    <img src="image/ccna.jpg" alt="Course Image">
+    <h3>Cisco Certified Network Associate.</h3>
+    <p>Learn The Part Inc.</p>
+    <a href="https://www.youtube.com/watch?v=FAznh2xrDIo&t=1s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>70% complete</p>
+    <p class="rating">⭐️⭐️⭐️</p>
+    
+  </div>
+  <div class="course-card">
+    <img src="image/com.jpg" alt="Course Image">
+    <h3>CompTIA Security+ Exam Cram Course. </h3>
+    <p>Learn The Part Inc.</p>
+    <a href="https://www.youtube.com/watch?v=9Hd8QJmZQUc" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>50% complete</p>
+    <p class="rating">⭐️⭐️</p>
+    
+  </div><div class="course-card">
+    <img src="image/mi.jpg" alt="Course Image">
+    <h3>Microsoft Azure Fundamentals Certification Course.</h3>
+    <p>Learn The Part Inc.</p>
+    <a href="https://www.youtube.com/watch?v=5abffC-K40c&t=4s" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>100% complete</p>
+    <p class="rating">⭐️⭐️⭐️⭐️⭐️</p>
+    
+  </div>
+  <div class="course-card">
+    <img src="image/it.jpg" alt="Course Image">
+    <h3>IT Skills Training for beginners</h3>
+    <p>Learn The Part Inc.</p>
+    <a href="https://www.youtube.com/watch?app=desktop&v=On6dsIp5yw0" target="TARGET_ATTRIBUTE" other_attributes="value"><strong>Start Now.</strong></a>
+
+    <p>50% complete</p>
+    <p class="rating">⭐️⭐️⭐️</p>
+    
+  </div>
+  
+</div>
+<script>
+  const tabs = document.querySelectorAll('.tab-link');
+  const contentSections = document.querySelectorAll('.content-section');
+
+  function showContent(selectedTab) {
+    contentSections.forEach(section => {
+      section.style.display = 'none';
+    });
+
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    document.getElementById(selectedTab + '-content').style.display = 'block';
+    document.getElementById(selectedTab).classList.add('active');
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(event) {
+      event.preventDefault();
+      showContent(this.id);
+    });
+  });
+
+  showContent('all-courses');
+</script>
+</body>
+</html>
